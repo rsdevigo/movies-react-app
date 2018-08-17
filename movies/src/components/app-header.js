@@ -8,7 +8,7 @@ export default class AppHeader extends React.Component {
         <View style={styles.movieHeader}>
           <StatusBar hidden={true}/>
           <View style={styles.movieHeaderTitle}>
-          <Image style={styles.movieHeaderLogo} source={require('./logo.png')} />
+            <Image style={styles.movieHeaderLogo} source={require('./logo.png')} />
             <Text style={styles.movieHeaderTitleText}>Filmes</Text>
           </View>
           <View>
@@ -24,7 +24,7 @@ export default class AppHeader extends React.Component {
   }
 
   _onPressButton() {
-    Alert.alert('You tapped the button!');
+    Alert.alert('You tapped the button! aushduashduashudhdsuh');
   }
 }
 

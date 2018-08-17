@@ -1,12 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, StatusBar, TouchableHighlight, Alert } from 'react-native';
+import { StyleSheet, Text, ScrollView, Image, StatusBar, TouchableHighlight, Alert } from 'react-native';
+import MovieItem from './movie-item';
 
 export default class MovieList extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Aqui estou mais um dia !</Text>
-      </View>
+      <ScrollView style={styles.movieList}>
+        <MovieItem />
+        <MovieItem />
+        <MovieItem />
+        <MovieItem />
+      </ScrollView>
     );
   }
 }
@@ -15,9 +19,9 @@ export default class MovieList extends React.Component {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+  movieList: {
+    margin: 8,
+    padding: 0,
+    backgroundColor: '#eeeeee'
   }
 });
