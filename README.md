@@ -13,16 +13,19 @@ Aplicativo que lista filmes usando o React Native
 
 1. Instalar o pacote do nodejs ``create-react-native-app`` executando  seguinte comando no Git Bash:
 
-  ``npm install -g create-react-native-app``
+  * ``npm install -g create-react-native-app``
 
-2. Instalar as dependências do projeto por meio de dois comandos no Git Bash:
+2. Atualizar o npm e instalar o pacote ``yarn`` com o seguinte comando:
 
-  ``npm install``
+  * ``npm install -g npm@latest``
+  * ``npm install -g yarn``
 
-  ``yarn install``
+3. Instalar as dependências do projeto por meio de três comandos no Git Bash:
+  * ``cd movies``
+  * ``npm install``
+  * ``yarn install``
 
-3. Executar o projeto por meio do comando no Git Bash:
-
-  ``npm run start``
-
-4. Conectar o celular via USB e apertar a letra ``a`` se for Android ou ``i`` se for iOS no Git Bash.
+4. Executar o projeto por meio do comando no Git Bash:
+  * ``cd movies``
+  * ``npm run start``
+5. Conectar o celular via USB e apertar a letra ``a`` se for Android ou ``i`` se for iOS no Git Bash.

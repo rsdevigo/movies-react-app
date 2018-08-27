@@ -7,7 +7,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.body}>
-        <AppHeader />
+        <AppHeader title="Jogos 2" icon="https://image.flaticon.com/icons/png/512/168/168557.png" />
         <MovieList />
       </View>
     );

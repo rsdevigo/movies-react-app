@@ -1,20 +1,42 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, StatusBar, TouchableHighlight, Alert } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, StatusBar, TouchableHighlight, Alert, Button } from 'react-native';
 
 export default class MovieItem extends React.Component {
+
+  constructor (props) {
+    super(props);
+    this.state = {isFavorite: false};
+  }
+
   render() {
     return (
       <View style={styles.movieItem}>
         <View style={styles.movieItemHeader}>
-          <ImageBackground source={{uri:'https://mardehistorias.files.wordpress.com/2010/09/o-senhor-dos-aneis.jpg'}} resizeMode="cover" style={styles.movieItemHeaderImage}>
-            <Text style={styles.movieItemHeaderText}>Senhor dos Anéis</Text>
+          <ImageBackground source={{uri: this.props.cover}} resizeMode="cover" style={styles.movieItemHeaderImage}>
+            <Text style={styles.movieItemHeaderText}>{this.props.title}</Text>
           </ImageBackground>
         </View>
         <Text style={styles.movieItemText}>
-          2015 - IMDB 9,7
+          {this.props.year} - IMDB {this.props.grade}
         </Text>
+        <Button
+          title="Favoritar"
+          color="#ffdb58"
+          accessibilityLabel="Toque no botão mostarda para favoritar"
+          onPress={this._markMovie.bind(this)}
+        />
       </View>
     );
+  }
+
+  _markMovie () {
+    this.setState({isFavorite: true}, () => {
+      if (this.state.isFavorite) {
+        Alert.alert("Filme favoritado");
+      } else {
+        Alert.alert("DEU MERDA");
+      }
+    });
   }
 }
 

@@ -8,11 +8,11 @@ export default class AppHeader extends React.Component {
         <View style={styles.movieHeader}>
           <StatusBar hidden={true}/>
           <View style={styles.movieHeaderTitle}>
-            <Image style={styles.movieHeaderLogo} source={require('./logo.png')} />
-            <Text style={styles.movieHeaderTitleText}>Filmes</Text>
+            <Image style={styles.movieHeaderLogo} source={{uri: this.props.icon}} />
+            <Text style={styles.movieHeaderTitleText}>{this.props.title}</Text>
           </View>
           <View>
-            <TouchableHighlight onPress={this._onPressButton} underlayColor="transparent">
+            <TouchableHighlight onPress={this._onPressButton.bind(this)} underlayColor="transparent">
                <View style={styles.movieHeaderButton}>
                  <Text style={styles.movieHeaderButtonText}>+</Text>
                </View>
@@ -24,7 +24,8 @@ export default class AppHeader extends React.Component {
   }
 
   _onPressButton() {
-    Alert.alert('You tapped the button! aushduashduashudhdsuh');
+    this.props.title = 'Jogos 3';
+    Alert.alert(this.props.title);
   }
 }
 
