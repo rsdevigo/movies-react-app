@@ -7,7 +7,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.body}>
-        <AppHeader title="Jogos 2" icon="https://image.flaticon.com/icons/png/512/168/168557.png" />
+        <AppHeader title="Filmes" icon="https://image.flaticon.com/icons/png/512/168/168557.png" />
         <MovieList />
       </View>
     );
@@ -16,6 +16,6 @@ export default class App extends React.Component {
 
 const styles = {
   body: {
-    backgroundColor: '#eeeeee'
+    backgroundColor: '#eeeeee',
   }
 }

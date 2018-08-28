@@ -5,12 +5,22 @@ export default class MovieItem extends React.Component {
 
   constructor (props) {
     super(props);
-    this.state = {isFavorite: false};
+  }
+
+  _markMovie () {
+    return this.props.onFavorite(this.props.id);
   }
 
   render() {
+    let movieItemStyle = (this.props.isFavorite)?styles.movieItemFavorite:styles.movieItem;
+    let movieButtonAction;
+    if (!this.props.isFavorite) {
+      movieButtonActionTitle = "Favoritar";
+    } else {
+      movieButtonActionTitle = "Desfavoritar";
+    }
     return (
-      <View style={styles.movieItem}>
+      <View style={movieItemStyle}>
         <View style={styles.movieItemHeader}>
           <ImageBackground source={{uri: this.props.cover}} resizeMode="cover" style={styles.movieItemHeaderImage}>
             <Text style={styles.movieItemHeaderText}>{this.props.title}</Text>
@@ -20,7 +30,7 @@ export default class MovieItem extends React.Component {
           {this.props.year} - IMDB {this.props.grade}
         </Text>
         <Button
-          title="Favoritar"
+          title={movieButtonActionTitle}
           color="#ffdb58"
           accessibilityLabel="Toque no botão mostarda para favoritar"
           onPress={this._markMovie.bind(this)}
@@ -28,21 +38,21 @@ export default class MovieItem extends React.Component {
       </View>
     );
   }
-
-  _markMovie () {
-    this.setState({isFavorite: true}, () => {
-      if (this.state.isFavorite) {
-        Alert.alert("Filme favoritado");
-      } else {
-        Alert.alert("DEU MERDA");
-      }
-    });
-  }
 }
 
 const styles = StyleSheet.create({
   movieItem: {
     backgroundColor: '#ffffff',
+    margin: 0,
+    padding: 0,
+    marginBottom: 10,
+    borderRadius: 2,
+    elevation: 1,
+    width: '100%'
+  },
+
+  movieItemFavorite: {
+    backgroundColor: '#ffdb58',
     margin: 0,
     padding: 0,
     marginBottom: 10,
