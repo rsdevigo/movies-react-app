@@ -24,7 +24,6 @@ export default class AppHeader extends React.Component {
   }
 
   _onPressButton() {
-    this.props.title = 'Jogos 3';
     Alert.alert(this.props.title);
   }
 }

@@ -1,46 +1,28 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, Image, StatusBar, TouchableHighlight, Alert } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, ActivityIndicator, Image, StatusBar, TouchableHighlight, Alert } from 'react-native';
 import MovieItem from './movie-item';
 
 export default class MovieList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [
-        {
-          id: 1,
-          title: "Senhor do aneis 1",
-          grade: "9,7",
-          year: 2015,
-          cover: "https://mardehistorias.files.wordpress.com/2010/09/o-senhor-dos-aneis.jpg",
-          favorite: false
-        },
-        {
-          id: 2,
-          title: "Senhor do aneis 2",
-          grade: "9,7",
-          year: 2015,
-          cover: "https://mardehistorias.files.wordpress.com/2010/09/o-senhor-dos-aneis.jpg",
-          favorite: false
-        },
-        {
-          id: 3,
-          title: "Senhor do aneis 3",
-          grade: "9,7",
-          year: 2015,
-          cover: "https://mardehistorias.files.wordpress.com/2010/09/o-senhor-dos-aneis.jpg",
-          favorite: true
-        },
-        {
-          id: 4,
-          title: "Senhor do aneis 4",
-          grade: "9,7",
-          year: 2015,
-          cover: "https://mardehistorias.files.wordpress.com/2010/09/o-senhor-dos-aneis.jpg",
-          favorite: false
-        }
-      ]
+      isLoading: true
     }
+  }
+
+  async fetchMovies () {
+    try {
+      let moviesResponse = await fetch('https://facebook.github.io/react-native/movies.json');
+      let moviesResponseJson = await moviesResponse.json();
+      this.setState({movies: moviesResponseJson.movies, isLoading: false});
+    }catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  componentDidMount () {
+    return this.fetchMovies();
   }
 
   renderMovieItem (movie) {
@@ -48,9 +30,9 @@ export default class MovieList extends React.Component {
             title={movie.title}
             key={movie.id}
             id={movie.id}
-            cover={movie.cover}
+            cover='https://assets.b9.com.br/wp-content/uploads/2017/11/O-Senhor-dos-Aneis.jpg'
             grade={movie.grade}
-            year={movie.year}
+            year={movie.releaseYear}
             onFavorite={this.markMovie.bind(this)}
             isFavorite={movie.favorite} />
   }
@@ -66,11 +48,20 @@ export default class MovieList extends React.Component {
   }
 
   render() {
-    return (
-      <ScrollView style={styles.movieList}>
-        {this.state.movies.map(this.renderMovieItem.bind(this))}
-      </ScrollView>
-    );
+    if (this.state.isLoading) {
+      return (
+        <View>
+          <ActivityIndicator />
+        </View>
+      );
+    } else {
+      return (
+        <ScrollView style={styles.movieList}>
+          {this.state.movies.map(this.renderMovieItem.bind(this))}
+        </ScrollView>
+      );
+    }
+
   }
 }
 

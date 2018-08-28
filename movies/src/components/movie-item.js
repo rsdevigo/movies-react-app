@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, StatusBar, TouchableHighlight, Alert, Button } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Image, StatusBar, TouchableHighlight, Alert, Button } from 'react-native';
 
 export default class MovieItem extends React.Component {
 
@@ -12,22 +12,24 @@ export default class MovieItem extends React.Component {
   }
 
   render() {
-    let movieItemStyle = (this.props.isFavorite)?styles.movieItemFavorite:styles.movieItem;
     let movieButtonAction;
+    let favoriteStar;
     if (!this.props.isFavorite) {
       movieButtonActionTitle = "Favoritar";
+      favoriteStar = <Image source={require('./star_blank.png')} style={styles.favoriteStar} />
     } else {
       movieButtonActionTitle = "Desfavoritar";
+      favoriteStar = <Image source={require('./star.png')} style={styles.favoriteStar} />
     }
     return (
-      <View style={movieItemStyle}>
+      <View style={styles.movieItem}>
         <View style={styles.movieItemHeader}>
           <ImageBackground source={{uri: this.props.cover}} resizeMode="cover" style={styles.movieItemHeaderImage}>
             <Text style={styles.movieItemHeaderText}>{this.props.title}</Text>
           </ImageBackground>
         </View>
         <Text style={styles.movieItemText}>
-          {this.props.year} - IMDB {this.props.grade}
+          {favoriteStar} {this.props.year} - IMDB {this.props.grade} 
         </Text>
         <Button
           title={movieButtonActionTitle}
@@ -49,6 +51,11 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     elevation: 1,
     width: '100%'
+  },
+
+  favoriteStar: {
+    width: 32,
+    height: 32
   },
 
   movieItemFavorite: {
