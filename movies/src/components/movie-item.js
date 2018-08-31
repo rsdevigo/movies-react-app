@@ -1,24 +1,40 @@
 import React from 'react';
+// Importando todos o componentes nativos do React Native
 import { StyleSheet, Text, View, ImageBackground, Image, StatusBar, TouchableHighlight, Alert, Button } from 'react-native';
 
+// Criando uma classe para representar o componente MovieItem
+// Essa classe por se tratar de um componente React precisa herdar a classe: React.Component
+// Por isso o uso da palavra extends (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends)
 export default class MovieItem extends React.Component {
 
+  // Todos os componentes do React possuem um construtor que recebe as propriedades quando usa-se o componente como uma TAG (props)
+  // Por exemplo: <MovieItem title="Lorem Ipsum" cover="loreipsum" />, o valor da variável
+  // props será: props = {title: 'Lorem Ipsum', cover: 'loreipsum'}.
+  // A palavra super é uma palavra reservada que invoca (chama) o método construtor da
+  // classe Pai (React.Component)
   constructor (props) {
     super(props);
   }
 
+  //Método responsável por chamar o método do componente <movieList /> que marca
+  //um filme como favorito na lista de filmes que <movieList /> tem.
+  //this.props.id é um identificador único do filme na lista de filmes.
   _markMovie () {
     return this.props.onFavorite(this.props.id);
   }
 
+  //Método responsável por desenhar o componente na tela.
   render() {
     let movieButtonAction;
     let favoriteStar;
+    // Verifica se o filme está marcado como favorito
+    // Se estiver, o botão fica serve para desfavoritar o filme e a estrela apresentada fica amarela.
+    // Se não, o botão serve para favoritar o filme e a estrela fica apagada.
     if (!this.props.isFavorite) {
-      movieButtonActionTitle = "Favoritar";
+      movieButtonActionTitle = "Marcar como favorito";
       favoriteStar = <Image source={require('./star_blank.png')} style={styles.favoriteStar} />
     } else {
-      movieButtonActionTitle = "Desfavoritar";
+      movieButtonActionTitle = "Desmarcar como favorito";
       favoriteStar = <Image source={require('./star.png')} style={styles.favoriteStar} />
     }
     return (
@@ -29,7 +45,7 @@ export default class MovieItem extends React.Component {
           </ImageBackground>
         </View>
         <Text style={styles.movieItemText}>
-          {favoriteStar} {this.props.year} - IMDB {this.props.grade} 
+          {favoriteStar} {this.props.year} - IMDB {this.props.grade}
         </Text>
         <Button
           title={movieButtonActionTitle}
@@ -41,7 +57,8 @@ export default class MovieItem extends React.Component {
     );
   }
 }
-
+// Aqui estão os estilos em forma de objeto.
+//Eles são usados no método render().
 const styles = StyleSheet.create({
   movieItem: {
     backgroundColor: '#ffffff',
