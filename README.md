@@ -9,27 +9,35 @@ Aplicativo que lista filmes usando o React Native
 * Yarn
 * Aplicativo "Expo App" da [Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent) ou [App Store](https://itunes.apple.com/us/app/expo-client/id982107779)
 
-## Como instalar e executar
+## Como instalar e executar o aplicativo móvel.
 
 1. Instalar o pacote do nodejs ``create-react-native-app`` executando  seguinte comando no Git Bash:
 
   * ``npm install -g create-react-native-app``
 
 2. Atualizar o npm e instalar o pacote ``yarn`` com o seguinte comando:
-
   * ``npm install -g npm@latest``
   * ``npm install -g yarn``
-
-3. Instalar as dependências do projeto por meio de três comandos no Git Bash:
+  * ``npm install -g nodemon``
+3. Instalar as dependências do servidor express por meio de dois comandos no Git Bash:
+  * ``cd server``
+  * ``npm install``
+4. Executar o SQL do projeto no Banco de Dados MySQL que se encontra na pasta: ``server/db_init.sql``.
+5. Executar o SQL de inserção dos filmes que se encontra na pasta: ``server/insert_movies.sql``.
+6. Rodar o servidor por meio do comando:
+  * ``nodemon npm run start``
+7. Abra outro Git Bash para executar o aplicativo móvel.
+8. Instalar as dependências do projeto móvel por meio de três comandos no Git Bash:
   * ``cd movies``
   * ``npm install``
   * ``yarn install``
-
-4. Executar o projeto por meio do comando no Git Bash:
+9. Executar no terminal:
+  * Se for MacOS: ``export env REACT_NATIVE_PACKAGER_HOSTNAME=192.168.3.104``
+  * Se for Windows: ``set REACT_NATIVE_PACKAGER_HOSTNAME=192.168.3.104``
+10. Executar o projeto por meio do comando no Git Bash:
   * ``cd movies``
   * ``npm run start``
-
-5. Conectar o celular via USB e apertar a letra ``a`` se for Android ou ``i`` se for iOS no Git Bash.
+11. Conectar o celular via USB e apertar a letra ``a`` se for Android ou ``i`` se for iOS no Git Bash.
 
 
 ## Funcionalidades
