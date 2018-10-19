@@ -1,7 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, StatusBar, TouchableHighlight, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, StatusBar, TouchableHighlight, Modal, Alert, Button, TextInput } from 'react-native';
+import MovieForm from './movie-form';
 
 export default class AppHeader extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      modalVisible:  false,
+      movie: {
+        title: "",
+        grade: "",
+        year: 0,
+        cover: ""
+      }
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -19,12 +32,33 @@ export default class AppHeader extends React.Component {
              </TouchableHighlight>
           </View>
         </View>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            this.setModalVisible(!this.state.modalVisible);
+          }}>
+          <View style={{margin: 8}}>
+            <MovieForm />
+            <Button
+              title="Fechar formulário"
+              color="#ffdb58"
+              accessibilityLabel="Toque no botão mostarda para fechar o formulário"
+              onPress={() => {
+                this.setModalVisible(!this.state.modalVisible);
+              }}
+            />
+          </View>
+        </Modal>
       </View>
     );
   }
-
+  setModalVisible (visible) {
+    this.setState({modalVisible: visible});
+  }
   _onPressButton() {
-    Alert.alert(this.props.title);
+    this.setModalVisible(true);
   }
 }
 
